@@ -53,6 +53,11 @@
             <span th:text="#{vets}">Veterinarians</span>
           </li>
 
+          <li th:replace="~{::menuItem ('/calculator','calculator','add and subtract two numbers','calculator',#{calculator})}">
+            <span class="fa fa-calculator" aria-hidden="true"></span>
+            <span th:text="#{calculator}">Calculator</span>
+          </li>
+
           <li
             th:replace="~{::menuItem ('/oups','error','trigger a RuntimeException to see how it is handled','exclamation-triangle',#{error})}">
             <span class="fa exclamation-triangle" aria-hidden="true"></span>
