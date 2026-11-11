@@ -15,7 +15,7 @@ The numbered sessions are declared from `session-plan.md`; each one's task is wh
 | 1 | Author or import the change plan | no | 2026-11-10 |
 | 2 | Break the change plan into numbered sessions | no | 2026-11-10 |
 | 3 | The calculator page | no | 2026-11-10 |
-| 4 | Documentation comments on the calculator | — | not declared |
+| 4 | Documentation comments on the calculator | no | 2026-11-10 |
 
 ### Session 1 — Author or import the change plan
 
@@ -34,3 +34,9 @@ Session 2 appends two numbered sessions to docs/sessions/session-plan.md from do
 **Releasable: no.**
 
 Session 3 adds an online calculator page to the Spring Boot petclinic inside its existing shape: a new package org.springframework.samples.petclinic.calculator with Calculator.java (add and subtract over BigDecimal) and CalculatorController.java mapped to /calculator (GET shows the form, POST adds sum and difference to the model, both returning calculators/calculator), the template src/main/resources/templates/calculators/calculator.html in the existing layout with every string a message key, a Calculator menu item in fragments/layout.html, the six keys calculator, firstNumber, secondNumber, calculate, sum and difference in messages.properties and every translated messages_*.properties except messages_en.properties, and CalculatorControllerTests as a @WebMvcTest. Each step is shown by the Maven wrapper; the last runs CalculatorControllerTests and the repository's own I18nPropertiesSyncTest.
+
+### Session 4 — Documentation comments on the calculator
+
+**Releasable: no.**
+
+Session 4 adds documentation comments to what session 3 added and changes nothing else: Javadoc on Calculator, add and subtract in src/main/java/org/springframework/samples/petclinic/calculator/Calculator.java and on CalculatorController, showForm and calculate in src/main/java/org/springframework/samples/petclinic/calculator/CalculatorController.java, and an HTML comment at the top of src/main/resources/templates/calculators/calculator.html. Each step is shown by the Maven wrapper (spring-javaformat validates the Javadoc's format; I18nPropertiesSyncTest checks the template) and by a check that the diff of its files against HEAD only adds comment lines.
