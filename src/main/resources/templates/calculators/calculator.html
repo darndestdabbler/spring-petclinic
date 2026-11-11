@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<html xmlns:th="https://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'calculator')}">
+
+<body>
+
+  <h2 th:text="#{calculator}">Calculator</h2>
+
+  <form th:action="@{/calculator}" method="post" class="form-horizontal" id="calculator-form">
+    <div class="form-group">
+      <label class="col-sm-2 control-label" for="left" th:text="#{firstNumber}">First number</label>
+      <div class="col-sm-10">
+        <input class="form-control" id="left" name="left" type="number" step="any" required th:value="${left}" />
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-2 control-label" for="right" th:text="#{secondNumber}">Second number</label>
+      <div class="col-sm-10">
+        <input class="form-control" id="right" name="right" type="number" step="any" required th:value="${right}" />
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+        <button type="submit" class="btn btn-primary" th:text="#{calculate}">Calculate</button>
+      </div>
+    </div>
+  </form>
+
+  <table class="table table-striped" th:if="${sum != null}">
+    <tr>
+      <th th:text="#{sum}">Sum</th>
+      <td th:text="${sum}">0</td>
+    </tr>
+    <tr>
+      <th th:text="#{difference}">Difference</th>
+      <td th:text="${difference}">0</td>
+    </tr>
+  </table>
+
+</body>
+
+</html>
