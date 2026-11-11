@@ -49,8 +49,12 @@ posture: maintenance  # 59 tracked source or build file(s) when bootstrap ran (b
 #       required: true
 testing:
   suites:
+    # PostgresIntegrationTests starts PostgreSQL through Docker Compose and fails
+    # on a machine without a running Docker daemon, before any change; the
+    # suite runs everything else. The Gradle build beside this one runs the
+    # same tests, so it is not declared as a second suite.
     - name: maven
-      command: ./mvnw -q test
+      command: ./mvnw -q test -Dtest=!PostgresIntegrationTests -Dsurefire.failIfNoSpecifiedTests=false
       expensive: true
       covers:
         - "."
@@ -59,15 +63,6 @@ testing:
       test_glob: ["*Test.java", "*Tests.java"]
       test_name: ["{name}Test.java", "{name}Tests.java"]
       select: ./mvnw -q test -Dtest={names} -Dsurefire.failIfNoSpecifiedTests=false
-    - name: gradle
-      command: ./gradlew test
-      expensive: true
-      covers:
-        - "."
-      runs_whole: true
-      test_roots:
-        - "src/test/java"
-      test_glob: ["*Test.java", "*Tests.java"]
 
   # A source file with no test named after it is shown to the reviewer,
   # and runs the smoke tests where the repository declares some -- a few
